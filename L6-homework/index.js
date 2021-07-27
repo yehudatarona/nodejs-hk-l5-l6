@@ -84,8 +84,8 @@ app.post('/product', async (req, res) => {
         const result = await prod_repo.addRecord(prod);
         console.log("result",result);
         res.status(201).json({
-            res: 'success',
-            url: `localhost:8080/product/${result}`,
+            res: 'item added success',
+            url: `localhost:8080/product/${result[0]}`,
             result
         })
     }
@@ -97,23 +97,6 @@ app.post('/product', async (req, res) => {
     }
 })
 
-app.post('/product', async (req, res) => {
-    try
-    {
-        let prod = req.body
-        const result = await prod_repo.addRecord(prod);
-        res.status(201).json({
-            res: 'success',
-            url: `localhost:8080/product/${prod.id}`,
-            result
-        })
-    }
-    catch(e) {
-        res.status(400).send({
-            status: 'fail',
-            message: e.message
-        })
-    }
-})
+
 
 app.listen(port, () => console.log(`Listening to port ${port}`));
